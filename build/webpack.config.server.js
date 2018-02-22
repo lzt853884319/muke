@@ -1,13 +1,14 @@
 const path = require('path')
-const HTMLPlugin = require('html-webpack-plugin');
 module.exports = {
+    target: 'node',
     entry: {
-        app: path.join(__dirname, '../client/app.js')
+        app: path.join(__dirname, '../client/server-entry.js')
     },
     output: {
-        filename: '[name].[hash].js',
+        filename: 'server-entry.js',
         path: path.join(__dirname, '../dist'),
-        publicPath: ''
+        publicPath: '/public',
+        libraryTarget: 'commonjs2'
     },
     module: {
         rules : [
@@ -25,10 +26,7 @@ module.exports = {
 
             }
         ]
-    },
-    plugins: [
-        new HTMLPlugin()
-    ]
+    }
 }
 
 // /public/app.hash.js
